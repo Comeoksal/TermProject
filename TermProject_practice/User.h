@@ -8,7 +8,7 @@ class User
 	int inventory_size;
 public:
 	User() {
-		inventory_size = 9;
+		inventory_size = 7;
 	}
 	const char* item[8] = { "§(고장난 손목시계)", NULL, NULL, NULL, NULL, NULL, NULL, NULL};
 	void set_Name(char* _name) {
