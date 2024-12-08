@@ -203,6 +203,7 @@ public:
 				}
 				char last_password[5] = "0000";
 				ConUtil::draw_Sign(_model, _user, "현관 비밀번호(숫자 4자리) : 0000");
+				ConUtil::show_cursor();
 				int start_x = 78;
 				int start_y = 16;
 				gotoxy(start_x, start_y);
@@ -247,6 +248,7 @@ public:
 				}
 				else {
 					ConUtil::draw_Sign(_model, _user, "잘못된 비밀번호.");
+					ConUtil::erase_cursor();
 					break;
 				}
 				break;
@@ -263,6 +265,7 @@ public:
 					if (!_visited_main) {
 						char main_password[5] = "0000";
 						ConUtil::draw_Sign(_model, _user, "안방 비밀번호(숫자 4자리) : 0000");
+						ConUtil::show_cursor();
 						int start_x = 78;
 						int start_y = 16;
 						gotoxy(start_x, start_y);
@@ -303,10 +306,12 @@ public:
 						}
 						if (strcmp(main_password, "4573")==0) {
 							_visited_main = true;
+							ConUtil::erase_cursor();
 							return 2;
 						}
 						else {
 							ConUtil::draw_Sign(_model, _user, "잘못된 비밀번호.");
+							ConUtil::erase_cursor();
 							break;
 						}
 					}
@@ -316,6 +321,11 @@ public:
 				}
 				break;
 			case 4:
+				ConUtil::drawCharacter(pos_col, pos_row);
+				if (old_col != pos_col || old_row != pos_row) {
+					ConUtil::drawCell(_model, _model->living_room, old_col, old_row);
+				}
+				ConUtil::draw_Sign(_model, _user, "뭐야.. 꿈 속인데 사람이 있잖아..? 설마 귀신인가..?!         의문의 할아버지 : 안방에 들어가는 비밀번호를 자네 방에서 찾을 수 있을 걸세.. 숫자 4개를 모아서 중앙에 있는 카펫과 조합을..");
 				break;
 			case 5:
 				ConUtil::drawCharacter(pos_col, pos_row);

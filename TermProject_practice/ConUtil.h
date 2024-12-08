@@ -45,6 +45,9 @@ public:
 	static void clear() {
 		clrscr();
 	}
+	static void show_cursor() {
+		_setcursortype(0);
+	}
 	static void erase_cursor() {
 		_setcursortype(1);
 	}
@@ -165,7 +168,7 @@ public:
 			break;
 		}
 		gotoxy(col+1, row +1);
-		puts(_model->cellSymbol[cell]);
+		puts(_model->living_room_cellSymbol[cell]);
 	}
 	static void drawMap(Model* _model, int map[][40], int width, int height) {
 		for (int row = 0; row < height; row++) {
@@ -195,7 +198,7 @@ public:
 			break;
 		}
 		gotoxy(col + 1, row + 1);
-		puts(_model->cellSymbol[cell]);
+		puts(_model->main_room_cellSymbol[cell]);
 	}
 	static void drawMap(Model* _model, int map[][30], int width, int height) {
 		for (int row = 0; row < height; row++) {
@@ -204,7 +207,7 @@ public:
 			}
 		}
 	}
-	//Draw My Room & Kitchen @Overload
+	//Draw My Room @Overload
 	static void drawCell(Model* _model, int map[][20], int col, int row) {
 		int cell = map[row][col];
 		switch (cell) {
@@ -225,7 +228,7 @@ public:
 			break;
 		}
 		gotoxy(col + 1, row + 1);
-		puts(_model->cellSymbol[cell]);
+		puts(_model->my_room_cellSymbol[cell]);
 	}
 	static void drawMap(Model* _model, int map[][20], int width, int height) {
 		for (int row = 0; row < height; row++) {

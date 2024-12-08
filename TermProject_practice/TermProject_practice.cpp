@@ -1,17 +1,13 @@
 ﻿// TermProject_practice.cpp : 이 파일에는 'main' 함수가 포함됩니다. 거기서 프로그램 실행이 시작되고 종료됩니다.
 //
+
 #include <iostream>
-#include <Windows.h>
 #include <string>
 #include "Controller.h"
 using namespace std;
-void setConsoleSize(int cols, int lines) {
-	string modeCommand = "mode con cols=" + to_string(cols) + " lines=" + to_string(lines);
-	system(modeCommand.c_str());
-}
+
 int main()
 {
-	setConsoleSize(120,30);
 	Controller controller;
 
 	controller.start();
