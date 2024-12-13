@@ -66,6 +66,9 @@ public:
 		case 2:
 			xyputstr(x, y, "안방");
 			break;
+		case 3:
+			xyputstr(x, y, "튜토리얼");
+			break;
 		}
 	}
 	static void draw_UserStatus(Model* _model, User* _user) {
@@ -80,7 +83,7 @@ public:
 		ConUtil::set_background(YELLOW);
 		ConUtil::xyputstr(50, 2, "이름: ");
 		ConUtil::xyputstr(55, 2, _user->get_Name());
-		ConUtil::xyputstr(50, 3, "직업:프로그래머 / 특징:결벽증 있음");
+		ConUtil::xyputstr(50, 3, "직업:프로그래머 / 특징:정리 강박증 있음");
 		ConUtil::xyputstr(50, 4, "보유 아이템: ");
 		int length_x = 62;
 		int length_y = 4;
@@ -146,6 +149,133 @@ public:
 		textcolor(BLACK);
 		textbackground(WHITE);
 		ConUtil::xyputstr(col + 1, row + 1, "●");
+	}
+	static void make_passable_Cell(Model* _model, int _pos_col, int _pos_row, int _old_col, int _old_row, int _room_num) {
+		if (_room_num == 0) {
+			ConUtil::drawCharacter(_pos_col, _pos_row);
+			if (_old_col != _pos_col || _old_row != _pos_row) {
+				ConUtil::drawCell(_model, _model->living_room, _old_col, _old_row);
+			}
+		}
+		else if (_room_num == 1) {
+			ConUtil::drawCharacter(_pos_col, _pos_row);
+			if (_old_col != _pos_col || _old_row != _pos_row) {
+				ConUtil::drawCell(_model, _model->my_room, _old_col, _old_row);
+			}
+		}
+		else if (_room_num == 2) {
+			ConUtil::drawCharacter(_pos_col, _pos_row);
+			if (_old_col != _pos_col || _old_row != _pos_row) {
+				ConUtil::drawCell(_model, _model->main_room, _old_col, _old_row);
+			}
+		}
+		else if (_room_num == 3) {
+			ConUtil::drawCharacter(_pos_col, _pos_row);
+			if (_old_col != _pos_col || _old_row != _pos_row) {
+				ConUtil::drawCell(_model, _model->tutorial_room, _old_col, _old_row);
+			}
+		}
+	}
+	static void make_password_line(Model* _model, int _start_x, int _start_y, char _input_code[]) {
+		gotoxy(_start_x, _start_y);
+		int p_key;
+		int current_x = 0;
+		int max_x = _start_x + 3;
+		int min_x = _start_x;
+		while ((p_key = ConUtil::getkey())) {
+			bool check_enter = false;
+			switch (p_key) {
+			case UPKEY:
+				break;
+			case DOWNKEY:
+				break;
+			case RIGHTKEY:
+				if (_start_x == max_x);
+				else {
+					_start_x++;  current_x++;
+				}
+				gotoxy(_start_x, _start_y);
+				break;
+			case LEFTKEY:
+				if (_start_x == min_x);
+				else {
+					_start_x--;  current_x--;
+				}
+				gotoxy(_start_x, _start_y);
+				break;
+			case ENTER:
+				check_enter = true;
+				break;
+			default:
+				ConUtil::xyputc(_start_x, _start_y, p_key);
+				_input_code[current_x] = p_key;
+				break;
+			}
+			if (check_enter) {
+				_model->set_input_password(_input_code);
+				break;
+			}
+		}
+	}
+	static void make_direction_password_line(Model* _model, int _start_x, int _start_y, char _input_code[]) {
+		gotoxy(_start_x, _start_y);
+		int p_key;
+		int current_x = 0;
+		while ((p_key = ConUtil::getkey())) {
+			bool check_enter = false;
+			switch (p_key) {
+			case UPKEY:
+				if (current_x < 9) {
+					_input_code[current_x] = 'u';
+					current_x++;
+					ConUtil::xyputstr(_start_x, _start_y, "↑");
+				}
+				else {
+					ConUtil::xyputstr(_start_x, _start_y, "입력완료");
+				}
+				break;
+			case DOWNKEY:
+				if (current_x < 9) {
+					_input_code[current_x] = 'd';
+					current_x++;
+					ConUtil::xyputstr(_start_x, _start_y, "↓");
+				}
+				else {
+					ConUtil::xyputstr(_start_x, _start_y, "입력완료");
+				}
+				break;
+			case RIGHTKEY:
+				if (current_x < 9) {
+					_input_code[current_x] = 'r';
+					current_x++;
+					ConUtil::xyputstr(_start_x, _start_y, "→");
+				}
+				else {
+					ConUtil::xyputstr(_start_x, _start_y, "입력완료");
+				}
+				break;
+			case LEFTKEY:
+				if (current_x < 9) {
+					_input_code[current_x] = 'l';
+					current_x++;
+					ConUtil::xyputstr(_start_x, _start_y, "←");
+				}
+				else {
+					ConUtil::xyputstr(_start_x, _start_y, "입력완료");
+				}
+				break;
+			case ENTER:
+				check_enter = true;
+				break;
+			default:
+				ConUtil::xyputstr(_start_x, _start_y, "방향키를 입력하세요.");
+				break;
+			}
+			if (check_enter) {
+				_model->set_direction_password(_input_code);
+				break;
+			}
+		}
 	}
 	//Draw Living Room 
 	static void drawCell(Model* _model, int map[][40], int col, int row) {

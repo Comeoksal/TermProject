@@ -5,12 +5,14 @@
 class User
 {
 	char name[100];
+	bool easter_egg1;
 	int inventory_size;
 public:
 	User() {
 		inventory_size = 14;
+		easter_egg1 = true;
 	}
-	const char* item[8] = { "§(고장난 손목시계)", NULL, NULL, NULL, NULL, NULL, NULL, NULL};
+	const char* item[15] = { "§(고장난 손목시계)", NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL};
 	void set_Name(char* _name) {
 		strcpy_s(name, 100, _name);
 	}
@@ -46,5 +48,11 @@ public:
 	}
 	int get_inventory_size() {
 		return inventory_size;
+	}
+	void set_easter_egg1(bool _tf) {
+		easter_egg1 = _tf;
+	}
+	int get_easter_egg1() {
+		return easter_egg1;
 	}
 };
