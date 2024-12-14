@@ -234,7 +234,7 @@ public:
 			total_easter--;
 		}
 		if (_user->find_inventory("◑[광활한 거실]")) {
-			ConUtil::xyputstr(start_x, start_y, "◑ [광활한 거실] / 조건 : 거실에서 이동 200회 이상");
+			ConUtil::xyputstr(start_x, start_y, "◑ [광활한 거실] / 조건 : 거실에서 이동 300회 이상");
 			start_y += 2;
 			total_easter--;
 		}
@@ -309,11 +309,11 @@ public:
 			case 1:
 				pos_col = old_col;
 				pos_row = old_row;
-				break; 
+				break;
 			case 2: {
 				ConUtil::make_passable_Cell(_model, pos_col, pos_row, old_col, old_row, 0);
 				if (_user->find_inventory("♭(현관문 열쇠)")) {
-					if (_user->get_easter_egg2() >= 200 && !_user->find_inventory("◑[광활한 거실]")) {
+					if (_user->get_easter_egg2() >= 300 && !_user->find_inventory("◑[광활한 거실]")) {
 						_user->set_inventory("◑[광활한 거실]");
 					}
 					return 3;
@@ -331,7 +331,7 @@ public:
 							_user->set_inventory("◎[여유있는 당신]");
 						}
 					}
-					if (_user->get_easter_egg2()>=200 && !_user->find_inventory("◑[광활한 거실]")) {
+					if (_user->get_easter_egg2() >= 300 && !_user->find_inventory("◑[광활한 거실]")) {
 						_user->set_inventory("◑[광활한 거실]");
 					}
 					return 1;
@@ -344,10 +344,10 @@ public:
 						ConUtil::make_password_line(_model, 78, 16, _input_password);
 						if (strcmp(_model->get_input_password(), _model->get_main_password()) == 0) {
 							_visited_main = true;
-							if (_user->get_easter_egg2() >= 200 && !_user->find_inventory("◑[광활한 거실]")) {
+							if (_user->get_easter_egg2() >= 300 && !_user->find_inventory("◑[광활한 거실]")) {
 								_user->set_inventory("◑[광활한 거실]");
 							}
-							memcpy(_model->living_room,_model->maze_living_room, 800*sizeof(int));
+							memcpy(_model->living_room, _model->maze_living_room, 800 * sizeof(int));
 							ConUtil::erase_cursor();
 							return 2;
 						}
@@ -429,7 +429,7 @@ public:
 		}
 	}
 	//my_room(visit_room_num == 1)
-	static int locate_my_room(Model* _model, User* _user, int &_pos_col, int &_pos_row) {
+	static int locate_my_room(Model* _model, User* _user, int& _pos_col, int& _pos_row) {
 		ConUtil::set_background(BLACK);
 		ConUtil::clear();
 		ConUtil::drawMap(_model, _model->my_room, MY_ROOM_WIDTH, MY_ROOM_HEIGHT);
@@ -520,7 +520,7 @@ public:
 		}
 	}
 	//main_room(visit_room_num == 2)
-	static int locate_main_room(Model* _model, User* _user, int &_pos_col, int &_pos_row) {
+	static int locate_main_room(Model* _model, User* _user, int& _pos_col, int& _pos_row) {
 		ConUtil::set_background(BLACK);
 		ConUtil::clear();
 		ConUtil::drawMap(_model, _model->main_room, MAIN_ROOM_WIDTH, MAIN_ROOM_HEIGHT);
@@ -677,7 +677,7 @@ public:
 				}
 				break;
 			}
-			case 7:{
+			case 7: {
 				ConUtil::make_passable_Cell(_model, pos_col, pos_row, old_col, old_row, 2);
 				ConUtil::draw_Sign(_model, _user, "< 2+2 = fish 3+3 = eight 4+4 = ? 7+7 = triangle (정답 영단어 중 앞의 4자리만 입력)>                                             영어 코드(영어 4자리) : aaaa    (Press Enter) [Hint Code : work]");
 				char _input_code[5] = "0000";
@@ -739,10 +739,10 @@ public:
 	static int locate_tutorial_room(Model* _model, User* _user, int& _pos_col, int& _pos_row) {
 		ConUtil::set_background(BLACK);
 		ConUtil::clear();
-		ConUtil::drawMap(_model, _model->tutorial_room, TUTORIAL_WIDTH, TUTORIAL_HEIGHT); 
+		ConUtil::drawMap(_model, _model->tutorial_room, TUTORIAL_WIDTH, TUTORIAL_HEIGHT);
 		ConUtil::draw_UserStatus(_model, _user);
 		ConUtil::draw_Sign(_model, _user, "이 곳은 안내문 창입니다. 게임을 진행하면서 이벤트가 발생할 시, 게임을 풀어나갈 수 있는 안내글이 이 곳에 나타납니다.           (방향키로 이동해보세요.)");
-		ConUtil::write_room_name(TUTORIAL_WIDTH, TUTORIAL_HEIGHT, 3); 
+		ConUtil::write_room_name(TUTORIAL_WIDTH, TUTORIAL_HEIGHT, 3);
 		ConUtil::erase_cursor();
 		ConUtil::drawCharacter(_pos_col, _pos_row);
 		int key;

@@ -234,7 +234,7 @@ public:
 			total_easter--;
 		}
 		if (_user->find_inventory("◑[광활한 거실]")) {
-			ConUtil::xyputstr(start_x, start_y, "◑ [광활한 거실] / 조건 : 거실에서 이동 200회 이상");
+			ConUtil::xyputstr(start_x, start_y, "◑ [광활한 거실] / 조건 : 거실에서 이동 300회 이상");
 			start_y += 2;
 			total_easter--;
 		}
@@ -313,7 +313,7 @@ public:
 			case 2: {
 				ConUtil::make_passable_Cell(_model, pos_col, pos_row, old_col, old_row, 0);
 				if (_user->find_inventory("♭(현관문 열쇠)")) {
-					if (_user->get_easter_egg2() >= 200 && !_user->find_inventory("◑[광활한 거실]")) {
+					if (_user->get_easter_egg2() >= 300 && !_user->find_inventory("◑[광활한 거실]")) {
 						_user->set_inventory("◑[광활한 거실]");
 					}
 					return 3;
@@ -331,7 +331,7 @@ public:
 							_user->set_inventory("◎[여유있는 당신]");
 						}
 					}
-					if (_user->get_easter_egg2() >= 200 && !_user->find_inventory("◑[광활한 거실]")) {
+					if (_user->get_easter_egg2() >= 300 && !_user->find_inventory("◑[광활한 거실]")) {
 						_user->set_inventory("◑[광활한 거실]");
 					}
 					return 1;
@@ -344,7 +344,7 @@ public:
 						ConUtil::make_password_line(_model, 78, 16, _input_password);
 						if (strcmp(_model->get_input_password(), _model->get_main_password()) == 0) {
 							_visited_main = true;
-							if (_user->get_easter_egg2() >= 200 && !_user->find_inventory("◑[광활한 거실]")) {
+							if (_user->get_easter_egg2() >= 300 && !_user->find_inventory("◑[광활한 거실]")) {
 								_user->set_inventory("◑[광활한 거실]");
 							}
 							memcpy(_model->living_room, _model->maze_living_room, 800 * sizeof(int));
