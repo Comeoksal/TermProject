@@ -2,17 +2,9 @@
 //
 
 #include <iostream>
-#include <Windows.h>
-#include <string>
-using namespace std;
 #include "Controller.h"
-void setConsoleSize(int cols, int lines) {
-	string modeCommand = "mode con cols=" + to_string(cols) + " lines=" + to_string(lines);
-	system(modeCommand.c_str());
-}
 int main()
 {
-	setConsoleSize(80, 25);
 	Controller controller;
 
 	controller.start();

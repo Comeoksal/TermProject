@@ -1,22 +1,26 @@
 #pragma once
-#define _CRT_SECURE_NO_WARNINGS
 #include <conio.h>
 #include <cstring>
 class User
 {
 	char name[100];
+	int easter_egg2;
+	bool easter_egg5;
 	int inventory_size;
+
 public:
 	User() {
-		inventory_size = 8;
+		inventory_size = 14;
+		easter_egg2 = 0;
+		easter_egg5 = true;
 	}
-	const char* item[8] = { "§(고장난 손목시계)", NULL, NULL, NULL, NULL, NULL, NULL, NULL };
 	void set_Name(char* _name) {
 		strcpy_s(name, 100, _name);
 	}
 	char* get_Name() {
 		return name;
 	}
+	const char* item[15] = { "§(고장난 손목시계)", NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL };
 	void set_inventory(const char* _item) {
 		int size = sizeof(item) / sizeof(item[0]);
 		for (int i = 0; i < size; i++) {
@@ -47,5 +51,16 @@ public:
 	int get_inventory_size() {
 		return inventory_size;
 	}
+	void set_easter_egg2() {
+		easter_egg2++;
+	}
+	int get_easter_egg2() {
+		return easter_egg2;
+	}
+	void set_easter_egg5(bool _tf) {
+		easter_egg5 = _tf;
+	}
+	int get_easter_egg5() {
+		return easter_egg5;
+	}
 };
-

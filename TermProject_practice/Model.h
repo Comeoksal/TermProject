@@ -1,10 +1,8 @@
 #pragma once
-#include <cstring>
-#include <conio.h>
 #include "User.h"
 #define LIVING_WIDTH 40
 #define LIVING_HEIGHT 20
-#define MY_ROOM_WIDTH 20
+#define MY_ROOM_WIDTH 20	
 #define MY_ROOM_HEIGHT 10
 #define MAIN_ROOM_WIDTH 30
 #define MAIN_ROOM_HEIGHT 15
@@ -12,11 +10,11 @@
 #define TUTORIAL_HEIGHT 3
 class Model
 {
+	//Input Password Variable
+	char input_password[5]; //입력 받는 패스워드
+	char direction_password[10]; //입력 받는 방향 패스워드
 	//Password List
-	char input_password[5];
-	char direction_password[10];
 	const char tutorial_password[5] = "a1b2";
-	const char final_password[5] = "7777";
 	const char main_password[5] = "4573";
 	const char main_code1[5] = "1001";
 	const char main_code2[5] = "3779";
@@ -36,6 +34,7 @@ public:
 	// 공용 셀 / 0:이동 가능 공간, 1 : 벽, 2 : 최종 탈출구, 3 : 방 이동 공간(my_room : [0][11], main_room : [9][39])
 	// 거실(living_room) 4:의문의 할아버지 5:전화공간
 	// 내방(my_room) 4:책상 5:변환된 책상 6:책장 7:옷장 8:침대 9:안방비밀번호순서 카펫
+	// 안방(main_room) 4:의문의 할머니 5~8 : 문제 공간 9~12 : 화살표 13~14:양
 	const char* living_room_cellSymbol[10] = { " ", " ", " ", " ", "♣", "☏", " ", " ", " ", " " };
 	const char* my_room_cellSymbol[10] = { " ", " ", " ", " ", "※", "※", "▩", "▣", "◑", "⊙" };
 	const char* main_room_cellSymbol[15] = { " ", " ", " ", " ", "♠", "‡", "♬", "▤", "⊙", "→", "↓", "←", "↗", "♧", "♧"};
@@ -134,9 +133,6 @@ public:
 	}
 	const char* get_tutorial_password() {
 		return tutorial_password;
-	}
-	const char* get_final_password() {
-		return final_password;
 	}
 	const char* get_main_password() {
 		return main_password;

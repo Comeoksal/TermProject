@@ -20,8 +20,11 @@ public:
 	}
 	void start() {
 		_view->print_Logo(_model, _user);
-		_view->print_story(_model, _user);
+		_view->play_tutorial(_model, _user);
+		_view->print_start_story(_model, _user);
 		_view->start_escape(_model, _user);
+		_view->print_ending_story(_model, _user);
+		_view->end_escape(_model, _user);
 	}
 };
 

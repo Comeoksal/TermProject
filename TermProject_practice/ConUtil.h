@@ -1,5 +1,4 @@
 ﻿#pragma once
-#define _CRT_SECURE_NO_WARNINGS
 #include <iostream>
 #include <conio.h>
 #include <cstring>
@@ -51,6 +50,7 @@ public:
 	static void erase_cursor() {
 		_setcursortype(1);
 	}
+	//방의 크기와 방 번호를 매개변수로 받아 방 아래위치를 구해서 방 이름 출력
 	static void write_room_name(int _width, int _height, int _roomnum) {
 		int x = (_width /2)- 2;
 		int y = _height+1;
@@ -83,12 +83,12 @@ public:
 		ConUtil::set_background(YELLOW);
 		ConUtil::xyputstr(50, 2, "이름: ");
 		ConUtil::xyputstr(55, 2, _user->get_Name());
-		ConUtil::xyputstr(50, 3, "직업:프로그래머 / 특징:정리 강박증 있음");
+		ConUtil::xyputstr(50, 3, "직업:프로그래머 / 특징:정리 강박증, 공대식 생각");
 		ConUtil::xyputstr(50, 4, "보유 아이템: ");
 		int length_x = 62;
 		int length_y = 4;
 		for (int i = 0; i < _user->get_inventory_size(); i++) {
-			if (_user->item[i]!=NULL && length_x + strlen(_user->item[i]) >= 100) {
+			if (_user->item[i] != NULL && length_x + strlen(_user->item[i]) >= 100) {
 				length_x = 62; length_y++;
 			}
 			else {
@@ -117,19 +117,19 @@ public:
 		int start_y = 16;
 		const char* current = str;  // 현재 위치를 가리키는 포인터
 		int currentLength = 0;      // 현재 줄의 길이
-		int maxLength = 65;
+		int maxLength = 65;			// 줄의 최대 길이(안내문 범위)
 		gotoxy(start_x, start_y);
 		while (*current != '\0') { 
 			const char* start = current; 
 			int segmentLength = 0;
 			while (*current != '\0' && segmentLength < maxLength) {
-				++current;
-				++segmentLength;
+				current++;
+				segmentLength++;
 			}
 			if (*current != '\0' && *(current - 1) != ' ') {
 				while (current > start && *current != ' ') {
-					--current;
-					--segmentLength;
+					current--;
+					segmentLength--;
 				}
 				if (current == start) {
 					current = start + maxLength;
