@@ -604,7 +604,7 @@ public:
 					ConUtil::show_cursor();
 					ConUtil::make_password_line(_model, 74, 20, _input_code);
 					if (strcmp(_model->get_input_password(), _model->get_hint_code(_user, 6)) == 0) {
-						ConUtil::draw_Sign(_model, _user, "의문의 할머니 : 양의 울음소리를 하나씩 잘 보도록. 그리고 숫자를 나타내는 방법에는 여러 진법이 있지");
+						ConUtil::draw_Sign(_model, _user, "의문의 할머니 : 양의 울음소리를 하나씩 잘 보도록. 각 양의 위치가 키보드 오른쪽 숫자 키패드처럼 3x3형태야. 그리고 숫자를 나타내는 방법에는 여러 진법이 있지");
 						_user->set_easter_egg5(false);
 						ConUtil::erase_cursor();
 						break;
@@ -616,7 +616,7 @@ public:
 						break;
 					}
 					else if (strcmp(_model->get_input_password(), _model->get_hint_code(_user, 8)) == 0) {
-						ConUtil::draw_Sign(_model, _user, "의문의 할머니 : 물건을 거울에 붙이면 어떻게 되나?");
+						ConUtil::draw_Sign(_model, _user, "의문의 할머니 : 숫자를 좌우 반전해서 합쳐보게. 만약 모르겠다면 직접 써보는 것도 나쁘지 않을지도..");
 						_user->set_easter_egg5(false);
 						ConUtil::erase_cursor();
 						break;
